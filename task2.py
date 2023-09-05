@@ -7,7 +7,7 @@
 #num2 = num
 #res_num = ""
 #res_str = ""
-#while num:
+#while num > 0:
     #res_str = str(num % 16) + res_num
     #num //= 16
     ######return res_str(лишнее пыталась так сделать )
