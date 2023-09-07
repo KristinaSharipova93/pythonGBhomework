@@ -1,0 +1,80 @@
+#2. Дан список повторяющихся элементов.
+# Вернуть список с дублирующимися элементами.
+# В результирующем списке не должно быть дубликатов.
+
+#my_list = [1, 2, 2, 3, 3, 3, 4, 256, 256, 247, 5]
+#my_list = list(set(my_list))
+#my_list.sort()
+#print("Список после удаления дубликатов: " + str(my_list))
+
+#3. В большой текстовой строке подсчитать количество встречаемых слов и вернуть 10 самых частых.
+# Не учитывать знаки препинания и регистр символов.
+#За основу возьмите любую статью из википедии или из документации к языку.
+#txt = '''Язык программирования необходим для разработки компьютерных программ.
+#Программы — это набор команд для компьютера. Выполняя команды программы, компьютер делает то, что от него требуется:
+#выводит информацию на экран, ожидает ввода данных и т. д.
+#В настоящее время существует множество языков программирования.
+#Может возникнуть вопрос: неужели нет какого-то одного универсального языка?
+#Универсальный язык, который напрямую «понимает» компьютер, — язык машинных команд.'''
+
+#punct = ',.!?:;'
+#ltxt = [w.rstrip(punct).lower() for w in txt.split() if len(w.rstrip(punct)) > 1]  #строка.rstrip(символы)-rstrip()
+### Метод удаляет все завершающие символы (символы в конце строки), по умолчанию завершающим символом для удаления является пробел.
+#print(*sorted(set(ltxt), key=ltxt.count, reverse=True)[:10], sep='\n')
+
+#4. Создайте словарь со списком вещей для похода в качестве ключа и их массой в качестве значения.
+# Определите какие вещи влезут в рюкзак передав его максимальную грузоподъёмность.
+# Достаточно вернуть один допустимый вариант.
+# *Верните все возможные варианты комплектации рюкзака.
+
+
+# вариант комплектации рюкзака по максимально возможной грузоподдьемности
+from operator import itemgetter
+
+my_diction = {'рюкзак': 2, 'котелок': 1, 'палатка': 7, 'байдарка': 15, 'шатер': 12, 'мангал': 2, 'спорт инвертарь': 6}
+max_capacity_backpack = 20
+weight = 0
+capacity_backpack = 0
+print("рюкзак: ", my_diction)
+print("список вещей по максимально возможной грузоподьемности рюкзака в ", max_capacity_backpack, "кг")
+for things, value in dict(sorted(my_diction.items(), key=itemgetter(1))).items():
+    weight += my_diction[things]
+
+    if weight <= max_capacity_backpack:
+        print(things, ' = ', value)
+        capacity_backpack += my_diction[things]
+
+print("общий вес рюкзака c вещами: ", capacity_backpack)
+
+# 2 вариант использование всех возможных вариантов комплектации рюкзака
+
+input('')
+
+print("Задача 3*")
+
+print("Все возможные варианты наполнгения рюкзака при допустимой грузоподьемности в ", max_capacity_backpack, "кг")
+
+list_dict_value = []
+list_dict_key = []
+for key, value in my_diction.items():
+    list_dict_key.append(key)
+    list_dict_value.append(value)
+
+def subset_sum(weights, things, target, count, partial_weights=[], partial_things=[]):
+    s = sum(partial_weights)
+
+    # check if the partial sum is equals to target
+    if s <= target:
+        print("список вещей(%s)\nвес вещей(%s) <= %s \n" % (partial_things, partial_weights, target))
+
+    if s >= target:
+        return  # if we reach the number why bother to continue
+
+    for i in range(len(weights)):
+        n = weights[i]
+        remaining_weights = weights[i + 1:]
+        m = things[i]
+        remaining_things = things[i + 1:]
+        subset_sum(remaining_weights, remaining_things, target, count + 1, partial_weights + [n], partial_things + [m])
+
+print(subset_sum(list_dict_value, list_dict_key, max_capacity_backpack, 0))
