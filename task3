@@ -50,7 +50,7 @@ print("общий вес рюкзака c вещами: ", capacity_backpack)
 
 input('')
 
-print("Задача 3*")
+print("Задача 4*")
 
 print("Все возможные варианты наполнгения рюкзака при допустимой грузоподьемности в ", max_capacity_backpack, "кг")
 
@@ -78,3 +78,6 @@ def subset_sum(weights, things, target, count, partial_weights=[], partial_thing
         subset_sum(remaining_weights, remaining_things, target, count + 1, partial_weights + [n], partial_things + [m])
 
 print(subset_sum(list_dict_value, list_dict_key, max_capacity_backpack, 0))
+
+#4 задание признаюсь что не сама делала, а ребята опять объясняли ,
+#2,3 сама решила а первое супер тупняк словила жду разбо( на нем вот почему то всегда более менее все понятно а когда блин сама пытаешься то порой так долго тупишь)
