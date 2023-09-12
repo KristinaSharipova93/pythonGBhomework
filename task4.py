@@ -10,7 +10,7 @@ print(trans_matrix)
 # где ключ — значение переданного аргумента, а значение — имя аргумента.
 # Если ключ не хешируем, используйте его строковое представление.
 
-def hashable_dicts(**kwargs):
+def my_dicts(**kwargs):
     new_dict = dict()
     for key, value in kwargs.items():
         if isinstance(value, (list, dict, set)):
@@ -20,6 +20,6 @@ def hashable_dicts(**kwargs):
     return new_dict
 
 
-print(hashable_dicts(name=["Кристина", "Вика"], \
+print(my_dicts(name=["Кристина", "Вика"], \
                      age=["30", "25"],\
                      work= ["Завод","Школа"]))
